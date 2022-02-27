@@ -6,7 +6,7 @@ require('dotenv').config();
 const host = process.env.TARGET;
 
 setInterval(() => {
-    (host.startsWith('https://') ? https : http)
+    (host.indexOf('https://') === 0 ? https : http)
         .get(process.env.TARGET, (res) => {
             console.log(`${process.env.TARGET}: Done.`);
         })
@@ -14,3 +14,4 @@ setInterval(() => {
             console.log(err);
         })
 }, 10);
+
