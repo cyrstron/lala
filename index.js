@@ -1,5 +1,6 @@
 const http = require('http');
 const https = require('https');
+const express = require('express');
 
 require('dotenv').config();
 
@@ -23,3 +24,15 @@ setInterval(() => {
         })
 }, 10);
 
+var app = express();
+
+// respond with "hello world" when a GET request is made to the homepage
+app.get('*', function(req, res) {
+    console.log(req.method);
+
+    res.sendStatus(200);
+});
+
+app.listen(process.env.PORT ?? 3000, () => {
+    console.log('Done')
+})
