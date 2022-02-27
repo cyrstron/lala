@@ -3,10 +3,18 @@ const https = require('https');
 
 require('dotenv').config();
 
-const host = process.env.TARGET;
+const port = +process.env.PORT ?? 80;
+
+let headers = {};
+
+try {
+    headers = JSON.parse(process.env.HEADERS);
+} catch (err) {
+
+}
 
 setInterval(() => {
-    (host.indexOf('https://') === 0 ? https : http)
+    (port === 443 ? https : http)
         .get(process.env.TARGET, (res) => {
             console.log(`${process.env.TARGET}: Done.`);
         })
