@@ -16,7 +16,7 @@ try {
 
 setInterval(() => {
     (port === 443 ? https : http)
-        .get(process.env.TARGET, (res) => {
+        .get(process.env.HOST, (res) => {
             console.log(`${process.env.TARGET}: Done.`);
         })
         .on('error', (err) => {
